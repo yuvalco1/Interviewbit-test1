@@ -155,6 +155,29 @@ public class Main {
         return minsteps;
     }
 
+//Interviewbit Max Sum Contiguous Subarray Solution - https://www.interviewbit.com/problems/max-sum-contiguous-subarray/
+// Find the contiguous subarray within an array, A of length N which has the largest sum.
+//Input Format: The first and the only argument contains an integer array, A. Output Format: Return an integer representing the maximum possible sum of the contiguous subarray.
+// Solution is to use complexity N (not N^2 - double loop); The idea of Kadane’s algorithm is to maintain a variable max_ending_here that stores the maximum sum contiguous subarray ending at current index
+// and a variable max_so_far stores the maximum sum of contiguous subarray found so far, Everytime there is a positive-sum value in max_ending_here compare it with max_so_far and update max_so_far if it is greater than max_so_far.
+// see https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/ for more details
+
+
+    public static int maxSubArray(final int[] A) {
+        int maxsum = Integer.MIN_VALUE;
+        int max_ending_here = 0;
+        for (int i = 0; i < A.length; i++) {
+            max_ending_here = max_ending_here + A[i];
+            if (maxsum < max_ending_here)
+                maxsum = max_ending_here;
+            if (max_ending_here < 0)
+                max_ending_here = 0;
+        }
+        return maxsum;
+
+
+    }
+
     public static void main(String[] args) {
         // Define a 2D array
         int[][] arr = { {1, 2, 3},
@@ -176,5 +199,12 @@ public class Main {
         int [] A1 = {0, 1, 1,10000000};
         int [] B1 = {0, 1, 2, 10000000};
         System.out.println(coverPoints(A1, B1));
+
+
+        int [] A2 = {-2,1,-3,4,-1,2,1,-5,4};
+        System.out.println(maxSubArray(A2));
+
+
+
     }
 }
