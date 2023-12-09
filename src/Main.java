@@ -1,4 +1,3 @@
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,7 +13,7 @@ public class Main {
 //Input Format - The first argument is a matrix A.  Output Format - Return an array of integers representing all elements of the matrix in spiral order.
 
     public static int[] spiralOrder(final int[][] A) {
-        ArrayList<Integer> B = new ArrayList<Integer>();
+        ArrayList<Integer> B = new ArrayList<>();
 
         // Define the boundaries of the matrix
         int rowBegin = 0;
@@ -72,9 +71,9 @@ public class Main {
 
 
     public static int[] maxset(int[] A) {
-        List<Map<Long, int[]>> setList = new ArrayList<Map<Long, int[]>>();
+        List<Map<Long, int[]>> setList = new ArrayList<>();
         int N = A.length;
-        int retArr[] = new int[0];
+        int[] retArr = new int[0];
 
         // Loop through the array to find all non-negative subarrays
         for (int i = 0; i < N; i++) {
@@ -98,7 +97,7 @@ public class Main {
                 for (int k = 0; k < set.length; k++) {
                     finalset[k + 2] = set[k];
                 }
-                Map<Long, int[]> map = new HashMap<Long, int[]>();
+                Map<Long, int[]> map = new HashMap<>();
                 map.put(setsum, finalset);
                 setList.add(map);
                 i = j;
@@ -127,7 +126,7 @@ public class Main {
         }
 
         // Return the subarray with the maximum sum
-        if (setList.size() == 0) {
+        if (setList.isEmpty()) {
             return new int[]{};
         }else {
             return Arrays.copyOfRange(retArr, 2, retArr.length);
@@ -172,6 +171,7 @@ public class Main {
 
         // Call the maxset method
         int [] aar2 = maxset(aar);
+        System.out.println(Arrays.toString(aar2));
 
         int [] A1 = {0, 1, 1,10000000};
         int [] B1 = {0, 1, 2, 10000000};
