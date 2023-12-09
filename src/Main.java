@@ -7,6 +7,12 @@ import java.util.List;
 
 public class Main {
 
+
+//Interviewbit Spiral Order Matrix I Solution - https://www.interviewbit.com/problems/spiral-order-matrix-i/
+//Given a matrix of M * N elements (M rows, N columns), return all elements of the matrix in spiral order.
+//1 <= M, N <= 1000
+//Input Format - The first argument is a matrix A.  Output Format - Return an array of integers representing all elements of the matrix in spiral order.
+
     public static int[] spiralOrder(final int[][] A) {
         ArrayList<Integer> B = new ArrayList<Integer>();
 
@@ -54,6 +60,16 @@ public class Main {
 
         return C;
     }
+
+//Interviewbit Max Non Negative SubArray Solution - https://www.interviewbit.com/problems/max-non-negative-subarray/
+//Problem Description : Given an array of integers, A of length N, find out the maximum sum sub-array of non negative numbers from A.
+//The sub-array should be contiguous i.e., a sub-array created by choosing the second and fourth element and skipping the third element is invalid.
+//Maximum sub-array is defined in terms of the sum of the elements in the sub-array. Find and return the required subarray.
+//NOTE: If there is a tie, then compare with segment's length and return segment which has maximum length.
+//If there is still a tie, then return the segment with minimum starting index.
+//Input Format: The first and the only argument of input contains an integer array A, of length N.
+//1 <= N <= 10^5  ; -10^9 <= A[i] <= 10^9
+
 
     public static int[] maxset(int[] A) {
         List<Map<Long, int[]>> setList = new ArrayList<Map<Long, int[]>>();
@@ -118,6 +134,28 @@ public class Main {
         }
     }
 
+//Interviewbit Min Steps in Infinite Grid Solution - https://www.interviewbit.com/problems/min-steps-in-infinite-grid/
+//Problem Description : You are in an infinite 2D grid where you can move in any of the 8 directions :
+//(x,y) to (x-1, y-1), (x-1, y), (x-1, y+1), (x  , y-1), (x  , y+1), (x+1, y-1),(x+1, y), (x+1, y+1)
+//You are given a sequence of points and the order in which you need to cover the points.. Give the minimum number of steps in which you can achieve it. You start from the first point.
+
+    public static int coverPoints(int[] A, int[] B) {
+        int minsteps=0;
+
+        for (int i = 0; i < A.length-1; i++) {
+            int x1 = A[i];
+            int y1 = B[i];
+            int x2 = A[i + 1];
+            int y2 = B[i + 1];
+            int xdiff = Math.abs(x2 - x1);
+            int ydiff = Math.abs(y2 - y1);
+            minsteps += Math.max(xdiff, ydiff);
+
+        }
+
+        return minsteps;
+    }
+
     public static void main(String[] args) {
         // Define a 2D array
         int[][] arr = { {1, 2, 3},
@@ -134,5 +172,9 @@ public class Main {
 
         // Call the maxset method
         int [] aar2 = maxset(aar);
+
+        int [] A1 = {0, 1, 1,10000000};
+        int [] B1 = {0, 1, 2, 10000000};
+        System.out.println(coverPoints(A1, B1));
     }
 }
