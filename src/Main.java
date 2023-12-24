@@ -1,19 +1,9 @@
-import java.util.LinkedList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.*;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-
-
-
 
 public class Main {
 
@@ -474,31 +464,30 @@ public class Main {
         if (N < 3) return 0;
         int sum = 0, retsum = 0;
         int index1 = 0, index2 = 0, index3 = 0;
-        int[] B = new int [N+1]; // create a new array to store the max values of the subarrays to the right from N downwords
-        int[] C = new int [N]; // create a new array to store the max values of the subarrays to the left from 0 upwords
-        B[N] = A[N-1];
-        B[N-1] = A[N-1];
+        int[] B = new int[N + 1]; // create a new array to store the max values of the subarrays to the right from N downwords
+        int[] C = new int[N]; // create a new array to store the max values of the subarrays to the left from 0 upwords
+        B[N] = A[N - 1];
+        B[N - 1] = A[N - 1];
         C[0] = A[0];
 
-        for (int i = 1; i < N ; i++) {
-            C[i] = Math.max(A[i], C[i-1]);
+        for (int i = 1; i < N; i++) {
+            C[i] = Math.max(A[i], C[i - 1]);
         }
-
 
         int[][] sortedlist = new int[N][2];
 
-        for (int i = N-2; i > 0; i--) {
+        for (int i = N - 2; i > 0; i--) {
 //            sortedlist[i][1] = i;
 //            sortedlist[i][0] = A[i];
-            B[i] = Math.max(A[i], B[i+1]);
+            B[i] = Math.max(A[i], B[i + 1]);
 
-            if (A[i] < B[i+1] && A[i] > C[i-1]) {
-                retsum = Math.max(retsum, ((B[i+1] + C[i-1]) + A[i]));
-            } else if (A[i] < B[i+1] && A[i] < C[i-1]) {
+            if (A[i] < B[i + 1] && A[i] > C[i - 1]) {
+                retsum = Math.max(retsum, ((B[i + 1] + C[i - 1]) + A[i]));
+            } else if (A[i] < B[i + 1] && A[i] < C[i - 1]) {
                 for (int j = i - 1; j >= 0; j--) {
 
                     if (A[j] < A[i]) {
-                        retsum = Math.max(retsum, (B[i+1] + A[i] + A[j]));
+                        retsum = Math.max(retsum, (B[i + 1] + A[i] + A[j]));
                     }
                 }
             }
@@ -507,7 +496,6 @@ public class Main {
         }
 
 //        Arrays.sort(sortedlist, Comparator.comparingInt(a -> a[0]));
-
 
 
 // working soultion that fails on time complexity  :-(
@@ -555,7 +543,6 @@ public class Main {
 //            System.out.println("retsum = " + retsum + " index1 = " + index1 +  " index2 = " + index2 +  " index3 = " + index3 +" Midsum is "+ midsum );
 
 
-
 //        }
 
 
@@ -569,15 +556,15 @@ public class Main {
         int max;
         Arrays.sort(A);
         min = A[0];
-        max = A[A.length-1];
-        return min+max;
+        max = A[A.length - 1];
+        return min + max;
     }
 
 
     //  Interviewbit find the number of occurences of each number in array; https://www.interviewbit.com/problems/occurence-of-each-number/
     public static int[] findOccurences(int[] A) {
         Arrays.sort(A);
-        HashMap<Integer, Integer> numofoccur = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> numofoccur = new HashMap<>();
         for (int i = 0; i < A.length; i++) {
             if (numofoccur.containsKey(A[i])) {
                 numofoccur.put(A[i], numofoccur.get(A[i]) + 1);
@@ -650,7 +637,7 @@ public class Main {
 
         System.out.println(solve5(A8));
 
-        int[] A9 = {56, 35, 25, 32, 41, 50, 7, 52, 34, 41, 72, 12, 93, 50, 19, 94, 13, 19 };
+        int[] A9 = {56, 35, 25, 32, 41, 50, 7, 52, 34, 41, 72, 12, 93, 50, 19, 94, 13, 19};
         System.out.println(Arrays.toString(findOccurences(A9)));
     }
 }
